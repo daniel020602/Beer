@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+@auth
     <div>
         <a class="btn btn-primary" href="{{ route('beers.create') }}">Új sör</a>
     </div>
-
+    @endauth
     @if (session('success'))
         <div class="alert alert-success mt-3">
             {{ session('success') }}
@@ -35,14 +36,17 @@
                 <td>{{ $beer->point }}</td>
                 <td>{{ $beer->title}}</td>
                 <td class="d-flex">
+                @auth
                     <form class="ms-auto btn-group" action="{{ route('beers.destroy', $beer->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-sm btn-danger" type="submit">DEL</button>
                     </form>
+                    @endauth
                 </td>
             </tr>
         @endforeach
         </tbody>
     </table>
+
 @endsection
