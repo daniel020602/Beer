@@ -5,3 +5,18 @@ $body-bg: #f8fafc;
 $font-family-sans-serif: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+.image-container {
+    width: 150px; // Set the maximum width of the container
+    height: auto; // Let the height adjust automatically based on the image
+    overflow: hidden; // Hide any content that exceeds the container
+
+    // Optionally, set other styles such as margins, padding, etc.
+}
+
+.image-element {
+    max-width: 100%; // Ensure the image does not exceed the container's width
+    height: auto; // Let the height adjust automatically based on the image
+
+    // Optionally, set other styles such as margins, padding, etc.
+}

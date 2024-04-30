@@ -17,6 +17,7 @@ return new class extends Migration
             $table->float('alc_content')->nullable();
             $table->integer('point')->nullable();
             $table->foreignId('type')->nullable()->constrained('types')->nullOnDelete(); 
+            $table->string('image_url')->nullable();
             $table->timestamps();   
         });
     }

@@ -1,8 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+@auth
     <h2 class="">
         @if(isset($beer))
+       
+            <img src="{{$beer->image_url}}" style="max-width:100px; border-radius:2px;margin-right:5px" alt="sör képe">
+        
+
             sör szerkesztése:
             <span class="text-secondary">{{ $beer->name }}</span>
         @else
@@ -14,7 +19,8 @@
         class="row"
         action="{{ isset($beer) ? route('beers.update', $beer->id) : route('beers.store') }}"
         method="POST"
-    >
+        enctype="multipart/form-data"
+        >
         @csrf
         @if(isset($beer))
             @method('PUT')
@@ -81,9 +87,27 @@
                 </select>
             </div>
         </div>
-
+        <div class="col-8">
+            <label for="csv" class="form-label">kép</label>
+            <input
+                type="file"
+                class="form-control @error('image')is-invalid @enderror"
+                name="image_url"
+                id="image"
+                value="{{ old('image', isset($beer) ? $beer->image : '') }}"
+            >
+            @if (isset($beer))
+                <img src="{{ $beer->image }}" alt="" style="width: 150px;">
+            @endif
+            @error('image')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
+        </div>
         <div class="col-12 mt-3">
             <button class="btn btn-primary" type="submit">Mentés</button>
         </div>
     </form>
+    @endauth
 @endsection

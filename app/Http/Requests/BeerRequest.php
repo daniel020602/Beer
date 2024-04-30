@@ -26,6 +26,7 @@ class BeerRequest extends FormRequest
         'point' => ['nullable', 'numeric', 'min:0', 'max:10'], // Made 'point' field nullable
         'type' => ['nullable'], // Removed 'required' rule
         'alc_content' => ['required', 'numeric', 'min:0.5'],
+        'image_url' =>['nullable','image'],
     ];
     }
 
